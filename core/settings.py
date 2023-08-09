@@ -46,11 +46,15 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "django.contrib.sites",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
-    "allauth.socialaccount.providers.google",
-    "allauth.socialaccount.providers.facebook",
+    "django_extensions",
+    # "allauth",
+    # "allauth.account",
+    # "allauth.socialaccount",
+    # "allauth.socialaccount.providers.google",
+    # "allauth.socialaccount.providers.facebook",
+    # "allauth.socialaccount.providers.linkedin",
+    "user.apps.UserConfig",
+    "planner.apps.PlannerConfig",
 ]
 
 MIDDLEWARE = [
@@ -74,8 +78,8 @@ TEMPLATES = [
             "context_processors": [
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
-                "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "django.contrib.auth.context_processors.auth",
             ],
         },
     },
@@ -98,6 +102,12 @@ DATABASES = {
     }
 }
 
+# Authentication
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    # "allauth.account.auth_backends.AuthenticationBackend",
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -117,6 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'user.NewUser'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
